@@ -1,14 +1,17 @@
 let library = [];
 
-function Book(title, author, pages, isRead) {
+function Book(title, author, pages, isRead, index) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
+    this.index = index;
 }
 
-Book.prototype.addBookToLibrary = () => {
-    library.unshift(this);
+
+
+function addToLibrary(obj) {
+    this.library.push(obj);
 }
 
 const addBtn = document.querySelector('.add-btn');
@@ -20,7 +23,6 @@ addBtn.addEventListener('click', () => {
     parent.appendChild(container);
 
     let bookForm = document.createElement('form');
-    bookForm.target = '';
     container.appendChild(bookForm);
 
     let formTitle = document.createElement('h2');
@@ -59,7 +61,6 @@ addBtn.addEventListener('click', () => {
 
     let inputPage = document.createElement('input');
     inputPage.type = 'number';
-    inputPage.min
     inputPage.id = 'page-number';
     inputDivPage.appendChild(inputPage);
 
@@ -82,10 +83,31 @@ addBtn.addEventListener('click', () => {
     labelForCheck.textContent = 'Have you read the book?';
     inputDivCheck.appendChild(labelForCheck);
 
-    let addBook = document.createElement('input');
-    addBook.type = 'submit';
+    let addBook = document.createElement('button');
     addBook.id = 'submit-btn';
     addBook.value = 'Add new book';
     bookForm.appendChild(addBook);
+
+
+    inputPage.addEventListener('change', function() {
+        let v = parseInt(this.value);
+        if (v < 1) this.value = 1;
+    });
+
+    let currentIndex = 0;
+
+    let NewBook = new Book(inputTitle.value, inputAuthor.value, inputPage.value, isReadCheck.checked, currentIndex);
+
+    addBook.addEventListener('click', function() {
+
+        let currentIndex = library.length;
+
+        let NewBook = new Book(inputTitle.value, inputAuthor.value, inputPage.value, isReadCheck.checked, currentIndex);
+
+        addToLibrary(NewBook);
+        
+    })
+
 });
+
 
