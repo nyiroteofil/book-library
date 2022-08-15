@@ -139,8 +139,8 @@ h1 {
 /*The style of the complete books*/
 
 .book {
-    width: 10vw;
-    height: 40vh;
+    width: 20vw;
+    height: 50vh;
     background-color: rgb(114, 46, 26);
     border: black 2px solid;
     border-radius: 10px;
