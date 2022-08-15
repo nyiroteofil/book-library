@@ -13,7 +13,7 @@ body {
 }
 
 #logo {
-    width: 35px;
+    width: 50px;
 }
 
 .title {
@@ -63,7 +63,7 @@ body {
     border-radius:  50%;
     font-size: 3.5em;
     color:rgb(238, 216, 91);
-    transition: transform 300ms linear, width 300ms linear, height 300ms linear, font-size 300ms linear;
+    transition: transform 300ms ease-in-out, width 300ms ease-in-out, height 300ms ease-in-out, font-size 300ms ease-in-out;
 }
 
 .form-container.show {
@@ -139,8 +139,8 @@ h1 {
 /*The style of the complete books*/
 
 .book {
-    width: 100px;
-    height: 200px;
+    width: 10vw;
+    height: 40vh;
     background-color: rgb(114, 46, 26);
     border: black 2px solid;
     border-radius: 10px;
