@@ -42,7 +42,8 @@ body {
     color:rgb(238, 216, 91)
 }
 
-.form-container {
+.form-container.show {
+    display: block;
     background: linear-gradient(180deg, rgb(224, 138, 88), rgb(156, 76, 22));
     border:black 3px solid;
     border-radius: 10px;
@@ -58,12 +59,18 @@ body {
     color:rgb(100, 33, 16)
 }
 
+.form-container {
+    display: none;
+}
+
 form {
     height: 100%;
     width: 100%;
     display: grid;
     grid-template: repeat(7, 1fr) / 1fr;
 }
+
+
 
 .input-container {
     display: flex;

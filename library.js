@@ -8,106 +8,48 @@ function Book(title, author, pages, isRead, index) {
     this.index = index;
 }
 
+Book.prototype.info = function() {
+    return `the book's title is ${this.title}.
+     It was written by ${this.author} and has ${this.pages} pages`;
+};
 
+function togleForm() {
+    let formContainer = document.querySelector('.form-container')
 
-function addToLibrary(obj) {
-    this.library.push(obj);
+    if (formContainer.classList.contains('show')) {
+        formContainer.classList.remove('show');
+    } else {
+        formContainer.classList.add('show');
+    }
 }
 
-const addBtn = document.querySelector('.add-btn');
+function renderBooks(Bookindex) {
 
-addBtn.addEventListener('click', () => {
-    let parent = document.querySelector('.shelf');
-    let container = document.createElement('div');
-    container.classList.add('form-container');
-    parent.appendChild(container);
+}
 
-    let bookForm = document.createElement('form');
-    container.appendChild(bookForm);
+function submitNewBook() {
+    let formContainer = document.querySelector('.form-container');
 
-    let formTitle = document.createElement('h2');
-    formTitle.textContent = 'New book';
-    bookForm.appendChild(formTitle);
+    let title = document.querySelector('#titleInput').value;
+    let author = document.querySelector('#authorInput').value;
+    let pages = document.querySelector('#page-number').value;
+    let isRead = document.querySelector('#isReadCheck').checked;
 
-    let inputDivTitle = document.createElement('div');
-    inputDivTitle.classList.add('input-container')
-    bookForm.appendChild(inputDivTitle);
+    let NewBook = new Book(title, author, pages, isRead, library.length);
 
-    let inputTitle = document.createElement('input');
-    inputTitle.id = 'titleInput';
-    inputDivTitle.appendChild(inputTitle);
+    NewBook.prototype = Object.create(Book.prototype);
 
-    let labelForTitle = document.createElement('label');
-    labelForTitle.htmlFor = 'titleInput';
-    labelForTitle.textContent = 'Title';
-    inputDivTitle.appendChild(labelForTitle);
+    library.push(NewBook);
 
-    let inputDivAuthor = document.createElement('div');
-    inputDivAuthor.classList.add('input-container')
-    bookForm.appendChild(inputDivAuthor);
+    formContainer.classList.remove('show');
+}
 
-    let inputAuthor = document.createElement('input');
-    inputAuthor.id = 'authorInput';
-    inputDivAuthor.appendChild(inputAuthor);
+const addBtn = document.querySelector('.add-btn')
 
-    let labelForAuthor = document.createElement('label');
-    labelForAuthor.htmlFor = 'authorInput';
-    labelForAuthor.textContent = 'Author';
-    inputDivAuthor.appendChild(labelForAuthor);
+addBtn.addEventListener('click', togleForm);
 
-    let inputDivPage = document.createElement('div');
-    inputDivPage.classList.add('input-container')
-    bookForm.appendChild(inputDivPage);
+const submitBook = document.querySelector('#submit-btn')
 
-    let inputPage = document.createElement('input');
-    inputPage.type = 'number';
-    inputPage.id = 'page-number';
-    inputDivPage.appendChild(inputPage);
-
-    let labelForPage = document.createElement('label');
-    labelForPage.htmlFor = 'page-number';
-    labelForPage.textContent = 'The book\'s length';
-    inputDivPage.appendChild(labelForPage);
-
-    let inputDivCheck = document.createElement('div')
-    inputDivCheck.classList.add('input-container')
-    bookForm.appendChild(inputDivCheck);
-
-    let isReadCheck = document.createElement('input');
-    isReadCheck.type = 'checkbox';
-    isReadCheck.id = 'read-check';
-    inputDivCheck.appendChild(isReadCheck);
-
-     let labelForCheck = document.createElement('label');
-    labelForCheck.htmlFor = 'read-check';
-    labelForCheck.textContent = 'Have you read the book?';
-    inputDivCheck.appendChild(labelForCheck);
-
-    let addBook = document.createElement('button');
-    addBook.id = 'submit-btn';
-    addBook.value = 'Add new book';
-    bookForm.appendChild(addBook);
-
-
-    inputPage.addEventListener('change', function() {
-        let v = parseInt(this.value);
-        if (v < 1) this.value = 1;
-    });
-
-    let currentIndex = 0;
-
-    let NewBook = new Book(inputTitle.value, inputAuthor.value, inputPage.value, isReadCheck.checked, currentIndex);
-
-    addBook.addEventListener('click', function() {
-
-        let currentIndex = library.length;
-
-        let NewBook = new Book(inputTitle.value, inputAuthor.value, inputPage.value, isReadCheck.checked, currentIndex);
-
-        addToLibrary(NewBook);
-        
-    })
-
-});
+submitBook.addEventListener('click', submitNewBook)
 
 

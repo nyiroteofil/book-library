@@ -14,7 +14,29 @@
         <h1 class="title">Your digital library</h1>
     </div>
     <div class="shelf">
-    <div class="add-btn">+</div>
+        <div class="form-container">
+            <form >
+                <h2>New book</h2>
+                <div class="input-container">
+                    <input type="text" name="title" id="titleInput" placeholder="The lord of the rings">
+                    <label for="titleInput">Title</label>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="author" id="authorInput" placeholder="J.R.R Tolkein">
+                    <label for="aurhorInput">Author</label>
+                </div>
+                <div class="input-container">
+                    <input type="number" name="page-num" id="page-number">
+                    <label for="page-num">The length of the book</label>
+                </div>
+                <div class="input-container">
+                    <input type="checkbox" name="read" id="isReadCheck">
+                    <label for="isReadCheck">Did you read it?</label>
+                </div>
+                <input name="new-book-btn" type="button" id="submit-btn" value="Add new book">
+            </form>
+        </div>
+        <div class="add-btn">+</div>
     </div>
 </body>
 </html>
