@@ -139,8 +139,8 @@ h1 {
 /*The style of the complete books*/
 
 .book {
-    width: 20vw;
-    height: 50vh;
+    width: 10%;
+    height: 50%;
     background-color: rgb(114, 46, 26);
     border: black 2px solid;
     border-radius: 10px;
@@ -210,6 +210,7 @@ h1 {
     text-align: center;
     color: rgb(248, 219, 88);
     margin-bottom: 10px;
+    font-size: 2em;
 }
 
 .book-author {
@@ -248,4 +249,13 @@ h1 {
     width: 60px;
     height: 60px;
     font-size: 4em;
+}
+
+/* On mobile or small screen devices*/
+
+@media only screen and (max-width: 750px) {
+        .book {
+            width: 40%;
+            height: 70%;
+        }
 }
