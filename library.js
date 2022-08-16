@@ -1,5 +1,17 @@
 let library = [];
 
+
+const addBtn = document.querySelector('.add-btn')
+
+addBtn.addEventListener('click', toggleForm);
+
+const submitBook = document.querySelector('#submit-btn')
+
+submitBook.addEventListener('click', submitNewBook)
+
+/*Functions*/
+
+
 function Book(title, author, pages, isRead, index) {
     this.title = title;
     this.author = author;
@@ -13,6 +25,49 @@ Book.prototype.info = function() {
      It was written by ${this.author} and has ${this.pages} pages`;
 };
 
+
+function updateIndexes(startingIndex) {
+    for (let i = startingIndex; i < library.length; i++) {
+        let currentBook = document.querySelector(`.book-${i}`);
+        let currentStatusBar = document.querySelector(`.status-bar-${i}`);
+        let currentTitle = document.querySelector(`.book-title-${i}`);
+        let currentAuthor = document.querySelector(`.book-author-${i}`);
+        let currentPages = document.querySelector(`.pages-${i}`);
+        let currentBtnGroup = document.querySelector(`.btn-group-${i}`);
+        let currentStatusBtn = document.querySelector(`.status-button-${i}`);
+        let currentRmBtn = document.querySelector(`.remove-btn-${i}`);
+
+        currentBook.classList.add(`book-${i - 1}`);
+        currentBook.classList.remove(`book-${i}`);
+        
+        currentStatusBar.classList.add(`status-bar-${i - 1}`);
+        currentStatusBar.classList.remove(`status-bar-${i}`);
+
+        currentTitle.classList.add(`book-title-${i - 1}`);
+        currentTitle.classList.remove(`book-title-${i}`);
+        
+        currentAuthor.classList.add(`book-author-${i - 1}`);
+        currentAuthor.classList.remove(`book-author-${i}`);
+   
+        currentPages.classList.add(`pages-${i - 1}`);
+        currentPages.classList.remove(`pages-${i}`);
+   
+        currentBtnGroup.classList.add(`btn-group-${i - 1}`);
+        currentBtnGroup.classList.remove(`btn-group-${i}`);
+
+        currentStatusBtn.classList.add(`status-button-${i - 1}`);
+        currentStatusBtn.classList.remove(`status-button-${i}`);
+
+        currentRmBtn.classList.add(`remove-btn-${i - 1}`)
+        currentRmBtn.classList.remove(`remove-btn-${i}`)
+    }
+
+    for (let i = startingIndex; i < library.length; i++) {
+        library[i].index = i - 1;
+    }
+}
+
+
 function createElement(type, classN, id, parent) {
     let parentElement = document.querySelector(`${parent}`);
 
@@ -25,6 +80,8 @@ function createElement(type, classN, id, parent) {
 
 function removeBook(index) {
     let book = document.querySelector(`.book-${index}`)
+
+    updateIndexes(index);
 
     book.remove();
 
@@ -112,7 +169,7 @@ if (this.isRead === false) {
 
 
 
- createElement('div', `remove-btn-${this.index}`, this.index, `.btn-group-${this.index}`);
+createElement('div', `remove-btn-${this.index}`, this.index, `.btn-group-${this.index}`);
 let rmBtn = document.querySelector(`.remove-btn-${this.index}`);
 rmBtn.textContent = 'Remove';
 
@@ -177,13 +234,3 @@ function submitNewBook() {
     pages.value = '';
     isRead.checked = false;
 }
-
-const addBtn = document.querySelector('.add-btn')
-
-addBtn.addEventListener('click', toggleForm);
-
-const submitBook = document.querySelector('#submit-btn')
-
-submitBook.addEventListener('click', submitNewBook)
-
-
