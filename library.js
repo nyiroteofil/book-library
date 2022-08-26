@@ -12,12 +12,15 @@ submitBook.addEventListener('click', submitNewBook)
 /*Functions*/
 
 
-function Book(title, author, pages, isRead, index) {
+class Book {
+
+    constructor(title, author, pages, isRead, index){
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
     this.index = index;
+    }
 }
 
 Book.prototype.info = function() {
